@@ -1,0 +1,1346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en" class="h-full bg-zinc-950 text-zinc-100"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;WOTaLIFE - Workout &amp; Life Tracker&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS CDN --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://jsdelivr.net"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Premium custom scrollbar styling for a sleek look */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-track {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #09090b;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #27272a;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 3px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #3f3f46;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Smooth view switching transitions */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.view-panel {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: opacity 0.2s ease-out, transform 0.2s ease-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Pulse utility for the active test week mode */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes pulse-border {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0%, 100% { border-color: rgba(168, 85, 247, 0.4); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { border-color: rgba(168, 85,<span class="Apple-converted-space">  </span>purple, 1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pulse-purple {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: pulse-border 2s infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom form resetting to override default mobile tap highlighting */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button, select, input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-tap-highlight-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="h-full font-sans antialiased selection:bg-zinc-800 selection:text-white"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- GLOBAL HEADER &amp; VIEW TOGGLE (MODULE 0) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="sticky top-0 z-40 w-full border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-md px-4 py-3 sm:px-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mx-auto flex max-w-7xl items-center justify-between gap-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Left Branding --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex-shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-indigo-500 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>WOTaLIFE</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Centre Mindset Engine Dropdown --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="creativeFocusSelect" class="hidden md:inline text-xs font-semibold tracking-wider text-zinc-400 uppercase"&gt;Focus:&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;select id="creativeFocusSelect" class="h-10 px-3 rounded-lg border border-zinc-800 bg-zinc-950 text-xs font-bold tracking-wide text-zinc-200 outline-none transition-colors duration-200 focus:border-zinc-700 min-w-[110px] cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="MUSIC"&gt;MUSIC&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="SCRIPT"&gt;SCRIPT&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="GRAPHIC"&gt;GRAPHIC&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="RELAX"&gt;RELAX&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Right Navigation Segmented Switch --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex p-0.5 rounded-xl border border-zinc-800 bg-zinc-950"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="toggleWorkoutBtn" class="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 text-zinc-400 hover:text-zinc-200 cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Workout Tracker</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="toggleLifeBtn" class="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 bg-zinc-900 border border-zinc-800 text-emerald-400 shadow-md cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Life</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Main Container --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8 pb-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- LIFE VIEW DASHBOARD CONTAINER --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="lifeViewContainer" class="view-panel space-y-6 block"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- GLOBAL MANIFEST POP-UP BUTTON TRIGGER --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="manifestModalOpenBtn" class="w-full sm:w-auto h-12 px-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-sm font-bold tracking-wider uppercase text-zinc-950 shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>✨ Manifest Grid</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- TWO COLUMN DASHBOARD GRID --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 lg:grid-cols-2 gap-6"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BOX 1: TODAY'S FACTORS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-between border-b border-zinc-800 pb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Box 1: Today's Factors&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="date" id="lifeDateInput" class="px-2 py-1 rounded bg-zinc-950 border border-zinc-800 text-xs font-semibold text-zinc-300 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Bed Time (Last Night)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="time" id="bedTimeInput" class="w-full h-11 px-3 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Wake Time (Today)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="time" id="wakeTimeInput" class="w-full h-11 px-3 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- LIFESTYLE PARAMETERS MATRIX --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-3 pt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Where are you working?&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-3 gap-2" id="workLocationGroup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="WFH" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer active-factor transition-all"&gt;Home (WFH)&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Office" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all"&gt;Office&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Weekend" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all"&gt;Weekend&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Partner Working?&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-2 gap-2" id="partnerWorkingGroup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Partner Off" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer active-factor transition-all"&gt;Partner Off&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Partner at Work" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all"&gt;Partner at Work&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Diary Today?&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-2 gap-2" id="diaryTodayGroup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Normal Diary" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer active-factor transition-all"&gt;Normal Diary&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button data-value="Busy Diary" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all"&gt;Busy Diary&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] font-medium tracking-wider text-zinc-400 uppercase"&gt;Swim Selector&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-2 gap-2" id="swimSelectorGroup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button id="swimNoBtn" data-value="NO SWIM" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer active-factor transition-all"&gt;NO SWIM&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button id="swimYesBtn" data-value="YES SWIM" class="h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all"&gt;YES SWIM&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="calculateBlueprintBtn" class="w-full h-11 bg-zinc-800 border border-zinc-700 text-zinc-100 font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-zinc-700 transition-colors cursor-pointer pt-0.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>⚙️ Calculate Blueprint</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BOX 2: TODAY'S BLUEPRINT OUTPUT --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4 flex flex-col justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-b border-zinc-800 pb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Box 2: Today's Blueprint&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="blueprintPlaceholder" class="flex-1 flex flex-col items-center justify-center py-12 text-center text-zinc-500 space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-2xl"&gt;📋&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-xs font-medium tracking-wide"&gt;Awaiting Daily Factors input configuration...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="blueprintDisplay" class="hidden flex-1 space-y-3.5 text-xs font-medium text-zinc-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Sleep Assessment:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="bpSleepOutput" class="font-bold text-zinc-100"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Exercise Allocation:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="bpExerciseOutput" class="font-bold text-zinc-100"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Optimal Timing (1.5h):&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="bpTimingOutput" class="font-bold text-emerald-400"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Chrono-Nutrition window:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between font-bold text-zinc-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;First Meal: &lt;span id="bpFirstMeal" class="text-zinc-200"&gt;&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Last Meal: &lt;span id="bpLastMeal" class="text-zinc-200"&gt;&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Supplement Timing:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between font-bold text-zinc-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Creatine (Pre): &lt;span id="bpCreatine" class="text-amber-400"&gt;&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Protein (Post): &lt;span id="bpProtein" class="text-indigo-400"&gt;&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="bpMindsetCard" class="p-3 rounded-xl border flex flex-col gap-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Mindset Alignment Analysis:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="bpMindsetOutput" class="font-bold text-zinc-100 leading-relaxed"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-3 rounded-xl bg-zinc-950/80 border border-zinc-700/50 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-400 uppercase tracking-wider text-[10px]"&gt;Target Bedtime (Tonight):&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="bpBedtimeOutput" class="font-bold text-teal-400 text-sm"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- BOX 3: LIFE LOG REGISTRY --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Box 3: Life Log Registry&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-[10px] text-zinc-500 mt-0.5"&gt;Commit actions to color the manifestation grid.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-3 gap-2 w-full sm:w-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="logLifeAllBtn" class="h-10 px-4 rounded-xl bg-emerald-500 text-zinc-950 font-bold text-xs uppercase tracking-wide cursor-pointer transition-transform hover:scale-[1.02]"&gt;ALL&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="logLifeSomeBtn" class="h-10 px-4 rounded-xl bg-amber-500 text-zinc-950 font-bold text-xs uppercase tracking-wide cursor-pointer transition-transform hover:scale-[1.02]"&gt;SOME&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="logLifeNoneBtn" class="h-10 px-4 rounded-xl bg-rose-500 text-zinc-950 font-bold text-xs uppercase tracking-wide cursor-pointer transition-transform hover:scale-[1.02]"&gt;NONE&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="overflow-x-auto -mx-5 sm:mx-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="inline-block min-w-full align-middle px-5 sm:px-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;table class="min-w-full divide-y divide-zinc-800 text-left text-xs text-zinc-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tr class="text-[10px] font-bold tracking-wider text-zinc-500 uppercase"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Date&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Exercise Type&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Creative Focus&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Tier&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3 text-right"&gt;Action&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tbody id="lifeRegistryTableBody" class="divide-y divide-zinc-800/60"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Populated dynamically via JavaScript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- WORKOUT VIEW DASHBOARD CONTAINER --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="workoutViewContainer" class="view-panel space-y-6 hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 lg:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BOX 1: STRATEGY WINDOW --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="strategyWindowPanel" class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4 transition-all duration-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-b border-zinc-800 pb-3 flex flex-col gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Strategy Window&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="effortBadge" class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide bg-yellow-500/20 text-yellow-400"&gt;Volume&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p id="motivationalTagline" class="text-[11px] font-medium leading-relaxed italic text-zinc-400"&gt;Building solid foundations and creating execution momentum.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="text-[10px] text-zinc-500 uppercase tracking-wide"&gt;Workout Select&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="workoutRoutineSelect" class="w-full h-11 px-3 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="A"&gt;Routine A&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="B"&gt;Routine B&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="C"&gt;Routine C&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="text-[10px] text-zinc-500 uppercase tracking-wide"&gt;Cycle Week&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="cycleWeekSelect" class="w-full h-11 px-3 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Populated 1-12 dynamically --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-3 pt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center justify-between p-3 rounded-xl bg-zinc-950 border border-zinc-800 h-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] text-zinc-400 uppercase tracking-wider"&gt;1RM Test Week&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="checkbox" id="testWeekToggle" class="w-4 h-4 accent-purple-500 cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center justify-between p-1 rounded-xl bg-zinc-950 border border-zinc-800 h-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="fatigueDeloadBtn" class="w-full h-full rounded-lg text-[10px] font-bold uppercase tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 hover:text-zinc-200 transition-colors cursor-pointer"&gt;Fatigue Mode&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-[10px] text-zinc-400 uppercase tracking-wider"&gt;Calculated Target Tension:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span id="targetWeightOutput" class="text-sm font-black text-zinc-100"&gt;-- kg&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-800/80 space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-[9px] font-bold text-zinc-500 uppercase tracking-wider block"&gt;Sandbox Epley Estimator&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-2 gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" id="sandboxWeight" placeholder="Weight (kg)" class="h-9 px-2.5 rounded-lg bg-zinc-950 border border-zinc-800 text-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" id="sandboxReps" placeholder="Reps count" class="h-9 px-2.5 rounded-lg bg-zinc-950 border border-zinc-800 text-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BOX 2: ROUTINE COMPONENT --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-b border-zinc-800 pb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Routine Exercises&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="exerciseListContainer" class="flex flex-col gap-2 max-h-[310px] overflow-y-auto pr-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Populated dynamically based on Routine selector --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- BOX 3: LOG METRICS INTERFACE --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section class="lg:col-span-2 xl:col-span-1 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4 flex flex-col justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-b border-zinc-800 pb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Log Metrics Panel&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-2.5 flex-1 justify-center flex flex-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-2 items-center text-center text-[10px] text-zinc-500 font-bold uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;Set Label&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;Weight (KG)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;Reps Counter&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-2 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-xs font-bold text-zinc-400 px-1"&gt;Set 1&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" step="0.5" id="set1Weight" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" id="set1Reps" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-2 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-xs font-bold text-zinc-400 px-1"&gt;Set 2&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" step="0.5" id="set2Weight" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" id="set2Reps" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-2 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-xs font-bold text-zinc-400 px-1"&gt;Set 3&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" step="0.5" id="set3Weight" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="number" id="set3Reps" class="h-10 text-center rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="pt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="workoutNotes" placeholder="Add custom notes for this exercise session..." class="w-full h-10 px-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 placeholder-zinc-600 outline-none focus:border-zinc-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="logExerciseRowBtn" class="w-full h-11 bg-emerald-500 text-zinc-950 font-black text-xs uppercase tracking-wider rounded-xl transition-all duration-150 hover:scale-[1.01] active:scale-[0.99] mt-3 cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>📥 Log Exercise Row</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- BOX 4: SESSION LOG REGISTRY --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-sm font-bold tracking-wider text-zinc-400 uppercase"&gt;Session Log Registry&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-[10px] text-zinc-500 mt-0.5"&gt;Historical progressive overload records sorted chronologically.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="overflow-x-auto -mx-5 sm:mx-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="inline-block min-w-full align-middle px-5 sm:px-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;table class="min-w-full divide-y divide-zinc-800 text-left text-xs text-zinc-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tr class="text-[10px] font-bold tracking-wider text-zinc-500 uppercase"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-2"&gt;Rot / Wk&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Exercise Name&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Performance Data Grid (3 Working Sets)&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Intensity&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3"&gt;Session Notes&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th class="py-3 px-3 text-right"&gt;Operations&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tbody id="workoutRegistryTableBody" class="divide-y divide-zinc-800/60"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Populated dynamically via JS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- GLOBAL OVERLAY MODAL: 365 DAY MANIFEST MATRIX --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="manifestModal" class="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/80 backdrop-blur-sm p-4 hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="relative w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6 space-y-5 shadow-2xl max-h-[95vh] overflow-y-auto"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="manifestModalCloseBtn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-200 text-base font-bold w-8 h-8 flex items-center justify-center bg-zinc-950 border border-zinc-800 rounded-full cursor-pointer transition-colors"&gt;✕&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center px-4 py-3 border border-zinc-800 bg-zinc-950/60 rounded-xl mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p id="manifestQuoteDisplay" class="text-xs sm:text-sm font-bold tracking-wide italic leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-400"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center px-1 text-[10px] uppercase tracking-wider text-zinc-400 font-bold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;365 Alignment Matrix Grid&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span id="matrixCounterDisplay" class="text-emerald-400"&gt;0/365 Days&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Dot Matrix Target Frame --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="matrixDotsGrid" class="grid grid-cols-20 gap-1.5 p-3 rounded-xl bg-zinc-950/60 border border-zinc-800 max-w-full justify-center aspect-square"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- 365 Dots systematically loaded via Javascript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CORE JAVASCRIPT LOGIC ENGINE --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// GLOBAL DATA MATRICES &amp; AMENDABLE EXERCISE CONFIGURATIONS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ROUTINES_MATRIX = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>A: ["Barbell Squat", "Bench Press", "Barbell Row", "Romanian Deadlift"],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>B: ["Conventional Deadlift", "Overhead Barbell Press", "Lat Pulldown", "Incline Dumbbell Fly"],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>C: ["Bulgarian Split Squat", "Weighted Pull-ups", "Dumbbell Lateral Raise", "Barbell Bicep Curl"]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const MANIFEST_QUOTES = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"I handle every challenge with effortless ease and grace.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"I remain deeply grounded, calm, and anchored in my power.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"I move forward every day in bold, radiant courage.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"I expand and elevate into my highest self daily.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"My mind is a clear, powerful creator of my reality."</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// CENTRAL LOCALSTORAGE STATE INITIALIZATION PROTOCOLS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let state = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>activeView: localStorage.getItem("WOT_activeView") || "Life",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>creativeFocus: localStorage.getItem("WOT_creativeFocus") || "MUSIC",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lifeRegistry: JSON.parse(localStorage.getItem("WOT_lifeRegistry")) || [],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutRegistry: JSON.parse(localStorage.getItem("WOT_workoutRegistry")) || [],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutActiveWeek: parseInt(localStorage.getItem("WOT_workoutActiveWeek")) || 1,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutActiveRoutine: localStorage.getItem("WOT_workoutActiveRoutine") || "A",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutSelectedExercise: localStorage.getItem("WOT_workoutSelectedExercise") || "",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutTestWeekMode: localStorage.getItem("WOT_workoutTestWeekMode") === "true",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workoutFatigueMode: localStorage.getItem("WOT_workoutFatigueMode") === "true"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// APPLICABLE LIFESTYLE UI PARAMETERS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let activeFactors = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>work: "WFH",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>partner: "Partner Off",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>diary: "Normal Diary",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>swim: "NO SWIM"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// UTILITY SYSTEM TO UPDATE PERSISTED DATA STATE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function saveState() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_activeView", state.activeView);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_creativeFocus", state.creativeFocus);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_lifeRegistry", JSON.stringify(state.lifeRegistry));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutRegistry", JSON.stringify(state.workoutRegistry));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutActiveWeek", state.workoutActiveWeek);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutActiveRoutine", state.workoutActiveRoutine);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutSelectedExercise", state.workoutSelectedExercise);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutTestWeekMode", state.workoutTestWeekMode);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem("WOT_workoutFatigueMode", state.workoutFatigueMode);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// DELEGATED DOM ELEMENT QUERY SELECTORS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const toggleWorkoutBtn = document.getElementById("toggleWorkoutBtn");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const toggleLifeBtn = document.getElementById("toggleLifeBtn");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const creativeFocusSelect = document.getElementById("creativeFocusSelect");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const workoutViewContainer = document.getElementById("workoutViewContainer");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const lifeViewContainer = document.getElementById("lifeViewContainer");</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// MANIFEST OVERLAY ELEMENTS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const manifestModal = document.getElementById("manifestModal");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const manifestModalOpenBtn = document.getElementById("manifestModalOpenBtn");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const manifestModalCloseBtn = document.getElementById("manifestModalCloseBtn");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const manifestQuoteDisplay = document.getElementById("manifestQuoteDisplay");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const matrixDotsGrid = document.getElementById("matrixDotsGrid");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const matrixCounterDisplay = document.getElementById("matrixCounterDisplay");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// MASTER ENGINE INITIALIZATION ROUTINE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener("DOMContentLoaded", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>initializeGlobalNavigation();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>initializeCycleWeekDropdown();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>evaluateProactiveSwimLock();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>syncViewDOMStates();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderLifeRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRoutineUI();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>calculateActiveWorkoutTension();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Default Calendar Date Bindings</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const todayStr = new Date().toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("lifeDateInput").value = todayStr;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// SECTION HEADER &amp; GENERAL VIEW SWITCH SELECTION MECHANICS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function initializeGlobalNavigation() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>creativeFocusSelect.value = state.creativeFocus;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>creativeFocusSelect.addEventListener("change", (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.creativeFocus = e.target.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (state.activeView === "Life") triggerDynamicBlueprintCalculation();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>toggleWorkoutBtn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.activeView = "Workout";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>syncViewDOMStates();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>toggleLifeBtn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.activeView = "Life";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>syncViewDOMStates();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function syncViewDOMStates() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.activeView === "Life") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>lifeViewContainer.classList.replace("hidden", "block");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>workoutViewContainer.classList.replace("block", "hidden");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>toggleLifeBtn.className = "h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 bg-zinc-900 border border-zinc-800 text-emerald-400 shadow-md cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>toggleWorkoutBtn.className = "h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 text-zinc-400 hover:text-zinc-200 cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>workoutViewContainer.classList.replace("hidden", "block");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>lifeViewContainer.classList.replace("block", "hidden");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>toggleWorkoutBtn.className = "h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 bg-zinc-900 border border-zinc-800 text-purple-400 shadow-md cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>toggleLifeBtn.className = "h-9 px-3 sm:px-4 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 text-zinc-400 hover:text-zinc-200 cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// BOX 1 FACTOR SELECTION CORE ENGINE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function setupFactorButtonGroup(groupId, factorKey) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById(groupId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!container) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const buttons = container.querySelectorAll("button");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>buttons.forEach(btn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Set initial active visual state</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (btn.getAttribute("data-value") === activeFactors[factorKey]) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>btn.className = "h-10 text-xs font-bold rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 cursor-pointer transition-all";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Prevent execution changes if item is dynamically locked down</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (btn.disabled || btn.classList.contains("opacity-50")) return;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>buttons.forEach(b =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>b.className = "h-10 text-xs font-bold rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 cursor-pointer transition-all";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>btn.className = "h-10 text-xs font-bold rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 cursor-pointer transition-all";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeFactors[factorKey] = btn.getAttribute("data-value");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Auto-recalculate if blueprint display is already open</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (!document.getElementById("blueprintDisplay").classList.contains("hidden")) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>triggerDynamicBlueprintCalculation();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// INITIALISE COMPONENT SELECTION EVENT LISTENERS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener("DOMContentLoaded", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setupFactorButtonGroup("workLocationGroup", "work");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setupFactorButtonGroup("partnerWorkingGroup", "partner");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setupFactorButtonGroup("diaryTodayGroup", "diary");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setupFactorButtonGroup("swimSelectorGroup", "swim");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("calculateBlueprintBtn").addEventListener("click", triggerDynamicBlueprintCalculation);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// PROACTIVE SWIM LOCKOUT TRACKING LOGIC</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function evaluateProactiveSwimLock() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const swimNoBtn = document.getElementById("swimNoBtn");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const swimYesBtn = document.getElementById("swimYesBtn");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!swimNoBtn || !swimYesBtn) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const logs = state.lifeRegistry;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let lastSwimTimestamp = 0;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Search chronologically for the most recent swim entry</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; logs.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (logs[i].exercise.includes("SWIM")) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lastSwimTimestamp = new Date(logs[i].date).getTime();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const currentTimestamp = new Date().getTime();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const daysSinceLastSwim = lastSwimTimestamp ? (currentTimestamp - lastSwimTimestamp) / (1000 * 60 * 60 * 24) : 999;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Trigger dynamic lockdown lock if 13 day safety perimeter is breached</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (daysSinceLastSwim &gt;= 13) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>activeFactors.swim = "YES SWIM";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Force Lock State</p>
+<p class="p1"><span class="Apple-converted-space">                </span>swimNoBtn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>swimNoBtn.className = "h-10 text-xs font-bold rounded-xl border border-zinc-900 bg-zinc-950/40 text-zinc-600 opacity-40 cursor-not-allowed transition-all";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>swimYesBtn.className = "h-10 text-xs font-bold rounded-xl border border-rose-500 bg-rose-500/20 text-rose-400 cursor-not-allowed transition-all pulse-purple";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const badge = document.getElementById("effortBadge");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (badge) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badge.textContent = "SWIM LOCKED";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badge.className = "px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide bg-rose-500/20 text-rose-400";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>swimNoBtn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Standard visual state validation is handled by standard setup routines</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// TIME MATH UTILITIES FOR TIMELINE ALIGNMENT</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function parseTimeToMinutes(timeStr) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!timeStr) return 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const parts = timeStr.split(":");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return parseInt(parts[0]) * 60 + parseInt(parts[1]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function formatMinutesToClock(minutes) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let normalized = (minutes + 1440) % 1440;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const h = Math.floor(normalized / 60).toString().padStart(2, "0");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const m = Math.floor(normalized % 60).toString().padStart(2, "0");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return `${h}:${m}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// CORE INTEGRATED COMPUTATION FOR THE DAILY BLUEPRINT</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function triggerDynamicBlueprintCalculation() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const bedTime = document.getElementById("bedTimeInput").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const wakeTime = document.getElementById("wakeTimeInput").value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!bedTime || !wakeTime) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Please configure parameters for both Bed Time and Wake Time to compute blueprint data.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("blueprintPlaceholder").classList.add("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("blueprintDisplay").classList.remove("hidden");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 1. Circadian Cycle Evaluation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let bedMins = parseTimeToMinutes(bedTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let wakeMins = parseTimeToMinutes(wakeTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let sleepDiff = wakeMins - bedMins;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (sleepDiff &lt;= 0) sleepDiff += 1440; // Handles overnight sleep shift crossing midnight</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const completedCycles = (sleepDiff / 90).toFixed(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let recoveryTier = "Deficit Recovery";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let recoveryClass = "text-rose-400";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (completedCycles &gt;= 5.0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>recoveryTier = "Optimal for Recovery";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>recoveryClass = "text-emerald-400";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (completedCycles &gt;= 4.0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>recoveryTier = "Moderate Recovery";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>recoveryClass = "text-amber-400";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpSleepOutput").textContent = `${completedCycles} Cycles (${recoveryTier})`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpSleepOutput").className = `font-bold ${recoveryClass}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 2. Dynamic Exercise Type Allocation Engine</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let calculatedExercise = "LIGHT: Mobility/Yoga/Walk";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (recoveryTier === "Optimal for Recovery") calculatedExercise = "INTENSE: Heavy Lift";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>else if (recoveryTier === "Moderate Recovery") calculatedExercise = "MODERATE: Weights/HIIT/5k Run";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Busy Diary Overrides</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (activeFactors.diary === "Busy Diary") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculatedExercise = "LIGHT: Mobility/Yoga/Walk";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if ((activeFactors.work === "WFH" || activeFactors.work === "Weekend") &amp;&amp; activeFactors.diary === "Normal Diary" &amp;&amp; (recoveryTier === "Optimal for Recovery" || recoveryTier === "Moderate Recovery")) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculatedExercise = recoveryTier === "Optimal for Recovery" ? "INTENSE: Heavy Lift" : "MODERATE: Weights/HIIT/5k Run";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Swim Explicit Forced Action Checks</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (activeFactors.swim === "YES SWIM") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculatedExercise = "SWIM";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpExerciseOutput").textContent = calculatedExercise;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 3. Exercise Window Optimization Timeline (1.5 Hour Blocks)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let workoutStartMins = wakeMins + 330; // Peak energy timeline alignment at 5.5 hours post-wake</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (calculatedExercise === "SWIM" &amp;&amp; activeFactors.work === "Office") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>workoutStartMins = 1080; // Post-work hours lock at 18:00</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let workoutEndMins = workoutStartMins + 90;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpTimingOutput").textContent = `${formatMinutesToClock(workoutStartMins)} - ${formatMinutesToClock(workoutEndMins)}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 4. Chrono-Nutrition &amp; Supplement Window Matrix</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpFirstMeal").textContent = formatMinutesToClock(wakeMins + 60);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpLastMeal").textContent = formatMinutesToClock(wakeMins + 600); // 10h baseline window</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpCreatine").textContent = formatMinutesToClock(workoutStartMins - 30);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpProtein").textContent = formatMinutesToClock(workoutEndMins);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 5. Creative Mindset Alignment Analysis &amp; Context Coaching</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mindsetCard = document.getElementById("bpMindsetCard");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let alignmentText = "";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (activeFactors.diary === "Busy Diary") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mindsetCard.className = "p-3 rounded-xl border border-rose-500/30 bg-rose-500/5 flex flex-col gap-1";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alignmentText = "High Friction Day Detected: Mindset should pivot strictly to [RELAX] tonight for systemic decompression.";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (activeFactors.work === "Weekend" &amp;&amp; activeFactors.diary === "Normal Diary") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mindsetCard.className = "p-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex flex-col gap-1";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alignmentText = `Weekend Mode Active: Time constraints removed. Prioritise your active Creative Focus [${state.creativeFocus}] as the core anchor of today.`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mindsetCard.className = "p-3 rounded-xl border border-zinc-800 bg-zinc-950/80 flex flex-col gap-1";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeFactors.partner === "Partner at Work") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alignmentText = "Private Window Detected: Optimal for deep focus on [MUSIC] or [SCRIPT] due to low environmental distraction. ";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Cross-reference baseline cognitive capacity limits</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (state.creativeFocus === "MUSIC" &amp;&amp; recoveryTier !== "Optimal for Recovery") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alignmentText += "⚠️ Energy Deficit: Focus set to MUSIC but body lacks optimal neurological recovery. Consider shifting to [RELAX] or downscaling focus tonight.";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>mindsetCard.className = "p-3 rounded-xl border border-amber-500/30 bg-amber-500/5 flex flex-col gap-1";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else if (state.creativeFocus === "SCRIPT" &amp;&amp; recoveryTier === "Deficit Recovery") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alignmentText += "⚠️ Cognitive Exhaustion: Focus set to SCRIPT but sleep cycle volume indicates critical deficit threshold. Keep session short.";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>mindsetCard.className = "p-3 rounded-xl border border-amber-500/30 bg-amber-500/5 flex flex-col gap-1";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alignmentText += `Mindset targets aligned. Execute strategy focus parameters for [${state.creativeFocus}] with full cognitive engagement.`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpMindsetOutput").textContent = alignmentText;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 6. Circadian Loop Closure Target Bedtime</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bpBedtimeOutput").textContent = formatMinutesToClock(wakeMins - 480); // Exact 8 hour rollback target calculation</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// RENDERING MECHANICS FOR THE 365-DAY MANIFESTATION OVERLAY MATRIX</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function generateManifestationMatrixUI() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!matrixDotsGrid) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>matrixDotsGrid.innerHTML = "";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Re-map historical metrics chronologically to matrix tracking slots</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const lifeLogs = [...state.lifeRegistry].reverse();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const completedCount = lifeLogs.length;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>matrixCounterDisplay.textContent = `${completedCount}/365 Days`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Build out the rigid 365 canvas slot parameters</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let dayIndex = 0; dayIndex &lt; 365; dayIndex++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dotElement = document.createElement("div");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dotElement.className = "w-3 h-3 rounded-full border border-zinc-800 transition-all duration-300";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Colorize active dots sequentially based on historical registry tier logs</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (dayIndex &lt; completedCount) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const logItem = lifeLogs[dayIndex];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (logItem.tier === "ALL") {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dotElement.className = "w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (logItem.tier === "SOME") {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dotElement.className = "w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (logItem.tier === "NONE") {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>dotElement.className = "w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dotElement.className = "w-3 h-3 rounded-full border border-zinc-800/80 bg-zinc-950/40";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>matrixDotsGrid.appendChild(dotElement);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// INITIALISE MODAL VISUALISATION EVENT CONTROLS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener("DOMContentLoaded", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>manifestModalOpenBtn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Populate random bold quotation lines on entry</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const randomIndex = Math.floor(Math.random() * MANIFEST_QUOTES.length);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>manifestQuoteDisplay.innerHTML = `"${MANIFEST_QUOTES[randomIndex]}"`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateManifestationMatrixUI();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>manifestModal.classList.remove("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>manifestModalCloseBtn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>manifestModal.classList.add("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Close modal layout when clicking the backdrop</p>
+<p class="p1"><span class="Apple-converted-space">            </span>manifestModal.addEventListener("click", (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (e.target === manifestModal) manifestModal.classList.add("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Bind Event Listeners for Daily Entry Grading buttons</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("logLifeAllBtn").addEventListener("click", () =&gt; executeLifeLogSubmission("ALL"));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("logLifeSomeBtn").addEventListener("click", () =&gt; executeLifeLogSubmission("SOME"));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("logLifeNoneBtn").addEventListener("click", () =&gt; executeLifeLogSubmission("NONE"));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// CORE DATA SUBMISSION ROUTINE FOR DAILY LIFE LOGS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function executeLifeLogSubmission(tierType) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const chosenDate = document.getElementById("lifeDateInput").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!chosenDate) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Please select a valid anchor date before logging metrics.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Extract structural calculations currently processed in Box 2</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let calculatedExercise = document.getElementById("bpExerciseOutput").textContent || "LIGHT: Mobility/Yoga/Walk";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Strip out subtext descriptions if present</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (calculatedExercise.includes("(")) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculatedExercise = calculatedExercise.split(" (")[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const activeFocus = state.creativeFocus;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Package data row object parameters</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dailyLogPacket = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: "life_" + new Date(chosenDate).getTime() + "_" + Math.floor(Math.random() * 1000),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>date: chosenDate,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>exercise: calculatedExercise,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>focus: activeFocus,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tier: tierType</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Inject tracking entry at index 0 (top-most sort)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.lifeRegistry.unshift(dailyLogPacket);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveState();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Refresh dependent modules instantly</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderLifeRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>evaluateProactiveSwimLock();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>generateManifestationMatrixUI();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Clean out target forms for next sequence reset</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("bedTimeInput").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("wakeTimeInput").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("blueprintDisplay").classList.add("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("blueprintPlaceholder").classList.remove("hidden");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// RENDERING ENGINE FOR THE LIFE LOG REGISTRY DATA TABLE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderLifeRegistryTable() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tableBody = document.getElementById("lifeRegistryTableBody");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!tableBody) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tableBody.innerHTML = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.lifeRegistry.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tableBody.innerHTML = `&lt;tr&gt;&lt;td colspan="5" class="py-8 text-center text-zinc-600 font-medium tracking-wide"&gt;No daily lifestyle entries captured in database yet.&lt;/td&gt;&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.lifeRegistry.forEach(row =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const tr = document.createElement("tr");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tr.className = "hover:bg-zinc-900/30 transition-colors duration-150";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Map CSS badge variants depending on tier outputs</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let badgeClass = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.tier === "SOME") badgeClass = "bg-amber-500/10 text-amber-400 border border-amber-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.tier === "NONE") badgeClass = "bg-rose-500/10 text-rose-400 border border-rose-500/20";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Generate specific cell actions if 'SOME' parameters are active</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let exerciseDisplayHTML = row.exercise || `&lt;span class="text-zinc-600 italic"&gt;Deleted&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let focusDisplayHTML = row.focus || `&lt;span class="text-zinc-600 italic"&gt;Deleted&lt;/span&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.tier === "SOME") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (row.exercise) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>exerciseDisplayHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="inline-flex items-center gap-1.5 bg-zinc-950 px-2 py-1 rounded-lg border border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span&gt;${row.exercise}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button onclick="deleteLifeGranularElement('${row.id}', 'exercise')" class="text-rose-500 font-bold hover:text-rose-400 cursor-pointer text-[10px] px-0.5"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Render focus item alongside persistent RELAX parameters</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (row.focus) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>focusDisplayHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex flex-wrap gap-1.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="inline-flex items-center gap-1.5 bg-zinc-950 px-2 py-1 rounded-lg border border-zinc-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;${row.focus}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="deleteLifeGranularElement('${row.id}', 'focus')" class="text-rose-500 font-bold hover:text-rose-400 cursor-pointer text-[10px] px-0.5"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="inline-flex items-center gap-1 bg-zinc-950/60 px-2 py-1 rounded-lg border border-zinc-800 text-zinc-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;RELAX&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>focusDisplayHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="inline-flex items-center gap-1 bg-zinc-950/60 px-2 py-1 rounded-lg border border-zinc-800 text-zinc-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span&gt;RELAX&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>tr.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 font-semibold text-zinc-400 whitespace-nowrap"&gt;${row.date}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 font-bold text-zinc-200"&gt;${exerciseDisplayHTML}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 font-bold text-zinc-200"&gt;${focusDisplayHTML}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="px-2 py-0.5 rounded text-[10px] font-extrabold ${badgeClass}"&gt;${row.tier}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 text-right whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="deleteLifeEntireRow('${row.id}')" class="text-zinc-600 hover:text-rose-400 font-bold text-sm cursor-pointer p-1 transition-colors"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tableBody.appendChild(tr);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// GRANULAR SUB-ELEMENT TARGET DELETIONS FOR 'SOME' GRADES</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function deleteLifeGranularElement(rowId, fieldType) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const targetIndex = state.lifeRegistry.findIndex(item =&gt; item.id === rowId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (targetIndex === -1) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Nullify target reference keys without purging structure</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.lifeRegistry[targetIndex][fieldType] = null;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderLifeRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>evaluateProactiveSwimLock(); // Re-verify timeline weights if a swim cell was modified</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// MASTER ROW PURGE CONTROL MECHANICS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function deleteLifeEntireRow(rowId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!confirm("Are you sure you want to completely delete this daily life log entry?")) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.lifeRegistry = state.lifeRegistry.filter(item =&gt; item.id !== rowId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderLifeRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>evaluateProactiveSwimLock();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>generateManifestationMatrixUI();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// WORKOUT MODULE CYCLE CONSTRUCTORS &amp; SELECTORS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function initializeCycleWeekDropdown() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cycleSelect = document.getElementById("cycleWeekSelect");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!cycleSelect) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cycleSelect.innerHTML = "";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let w = 1; w &lt;= 12; w++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const opt = document.createElement("option");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opt.value = w;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opt.textContent = `Week ${w}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (w === state.workoutActiveWeek) opt.selected = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cycleSelect.appendChild(opt);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Sync structural selection updates</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cycleSelect.addEventListener("change", (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutActiveWeek = parseInt(e.target.value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("workoutRoutineSelect").value = state.workoutActiveRoutine;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("workoutRoutineSelect").addEventListener("change", (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutActiveRoutine = e.target.value;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutSelectedExercise = ""; // Clear current focus</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderWorkoutRoutineUI();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 1RM Test Week Override Logic Interceptor</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const testToggle = document.getElementById("testWeekToggle");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>testToggle.checked = state.workoutTestWeekMode;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>testToggle.addEventListener("change", (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutTestWeekMode = e.target.checked;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (state.workoutTestWeekMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutFatigueMode = false; // Turn off competing modifier</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>syncStrategyModifierUI();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Fatigue Auto-Deload Event Frameworks</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const fatigueBtn = document.getElementById("fatigueDeloadBtn");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fatigueBtn.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutFatigueMode = !state.workoutFatigueMode;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (state.workoutFatigueMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutTestWeekMode = false;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("testWeekToggle").checked = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>syncStrategyModifierUI();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Sandbox Live Epley Estimator Listeners</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("sandboxWeight").addEventListener("input", runSandboxEpleyMath);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("sandboxReps").addEventListener("input", runSandboxEpleyMath);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>syncStrategyModifierUI();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// CONTROL BUTTON STATE ARCHITECTURE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function syncStrategyModifierUI() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const fatigueBtn = document.getElementById("fatigueDeloadBtn");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutFatigueMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fatigueBtn.textContent = "Return to 100%";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fatigueBtn.className = "w-full h-full rounded-lg text-[10px] font-bold uppercase tracking-wider bg-zinc-700 border border-zinc-600 text-zinc-100 cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fatigueBtn.textContent = "Fatigue Mode";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fatigueBtn.className = "w-full h-full rounded-lg text-[10px] font-bold uppercase tracking-wider bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// SANDBOX REAL-TIME MATH ENGINE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function runSandboxEpleyMath() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const weight = parseFloat(document.getElementById("sandboxWeight").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const reps = parseInt(document.getElementById("sandboxReps").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!weight || !reps) return;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Apply Epley standard formula rules</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const calculatedMax = weight * (1 + reps / 30);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("targetWeightOutput").textContent = `${calculatedMax.toFixed(1)} kg (Est. Max)`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// DYNAMIC OVERLOAD TENSION INTENSITY MATRIX PROMPTER</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function calculateActiveWorkoutTension() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const badge = document.getElementById("effortBadge");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tagline = document.getElementById("motivationalTagline");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const strategyPanel = document.getElementById("strategyWindowPanel");</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!badge || !tagline) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Baseline Block Math configuration modifiers</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let blockMod = state.workoutActiveWeek % 4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 0) blockMod = 4;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let intensityPercentage = 70;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let displayColor = "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let activeColorHex = "#fbbf24";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>strategyPanel.className = "rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-md p-5 sm:p-6 space-y-4 transition-all duration-300";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intensityPercentage = 70;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = `Week ${state.workoutActiveWeek} • Volume (70%)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Building solid foundations and creating execution momentum.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (blockMod === 2) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intensityPercentage = 75;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = `Week ${state.workoutActiveWeek} • Intensity Step (75%)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Stepping up focus boundaries and loading systemic stress parameters.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-amber-500/10 text-amber-400 border border-amber-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (blockMod === 3) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intensityPercentage = 85;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = `Week ${state.workoutActiveWeek} • Peak Strength (85%)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Maximum neurological drive. Execute power blocks at peak limits.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (blockMod === 4) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intensityPercentage = 60;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = `Week ${state.workoutActiveWeek} • Deload Recovery (60%)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Systemic active recovery window. Joint restructuring active.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-rose-500/10 text-rose-400 border border-rose-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Interrupt Overload parameters if modifiers are active</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutFatigueMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>intensityPercentage = 60;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = "Fatigue Auto-Deload Active (60%)";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Listening to the biological machine. Protecting orthopedic longevity.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-zinc-800 text-zinc-400 border border-zinc-700";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>strategyPanel.className = "rounded-2xl border border-zinc-700 bg-zinc-900/60 backdrop-blur-md p-5 sm:p-6 space-y-4 transition-all duration-300 shadow-[0_0_15px_rgba(63,63,70,0.15)]";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutTestWeekMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>badge.textContent = "1RM Testing Threshold Override";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tagline.textContent = "Raw maximum strain capacity analysis. Break boundary limits.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayColor = "bg-purple-500/20 text-purple-400 border border-purple-500/30";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>strategyPanel.className = "rounded-2xl border border-purple-500/30 bg-purple-950/10 backdrop-blur-md p-5 sm:p-6 space-y-4 transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.1)] pulse-purple";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>badge.className = `px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide ${displayColor}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Autofill targeted weight outputs if an exercise focus is active</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!state.workoutSelectedExercise) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("targetWeightOutput").textContent = "-- kg (Select Exercise)";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Track back history to query top calculated Epley metrics</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let historicalTop1RM = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.workoutRegistry.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.exercise === state.workoutSelectedExercise) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (item.calculated1RM &gt; historicalTop1RM) historicalTop1RM = item.calculated1RM;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (historicalTop1RM === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("targetWeightOutput").textContent = "No log profile. Test standard capacity limits.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!state.workoutTestWeekMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Set safe default baseline values if array log is non-existent</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("set1Weight").value = 40;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("set2Weight").value = 40;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("set3Weight").value = 40;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutTestWeekMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("targetWeightOutput").textContent = `Max Effort Required (Prev Max: ${historicalTop1RM.toFixed(1)}kg)`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let accurateTarget = historicalTop1RM * (intensityPercentage / 100);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Round neatly to nearest 0.5kg block limits</p>
+<p class="p1"><span class="Apple-converted-space">                </span>accurateTarget = Math.round(accurateTarget * 2) / 2;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("targetWeightOutput").textContent = `${accurateTarget.toFixed(1)} kg Target Tension`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Autofill forms seamlessly into metrics card panel</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("set1Weight").value = accurateTarget;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("set2Weight").value = accurateTarget;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("set3Weight").value = accurateTarget;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// RENDERING MECHANICS FOR ROUTINE COMPONENT EXERCISE SELECTION GRID</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderWorkoutRoutineUI() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const listContainer = document.getElementById("exerciseListContainer");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!listContainer) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>listContainer.innerHTML = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Query active array structure from global configuration</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const currentExercises = ROUTINES_MATRIX[state.workoutActiveRoutine] || [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentExercises.forEach(exerciseName =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const card = document.createElement("button");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>card.type = "button";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Highlight visual parameters if item matches state selection focus</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const isActive = exerciseName === state.workoutSelectedExercise;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isActive) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.className = "w-full text-left p-3.5 rounded-xl border border-purple-500/40 bg-purple-500/10 text-zinc-100 flex items-center justify-between font-bold text-xs cursor-pointer shadow-sm transition-all";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.className = "w-full text-left p-3.5 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700 font-bold text-xs cursor-pointer transition-all";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Append historical performance snapshot text lines</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let peakStatText = "No data logged";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>state.workoutRegistry.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (item.exercise === exerciseName) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Quick lookup for peak historical metrics</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (item.calculated1RM) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>peakStatText = `Peak 1RM: ${Math.round(item.calculated1RM)}kg`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>card.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="tracking-wide"&gt;${exerciseName}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-[10px] text-zinc-500 font-medium px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800/40"&gt;${peakStatText}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>card.addEventListener("click", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutSelectedExercise = exerciseName;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>renderWorkoutRoutineUI(); // Rerender items to snap state highlights</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>calculateActiveWorkoutTension(); // Auto-calculate tension parameters instantly</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>listContainer.appendChild(card);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// ENTRY CAPTURE INTERCEPTOR ENGINE FOR FORM METRICS ACTIONS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener("DOMContentLoaded", () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const logWorkoutBtn = document.getElementById("logExerciseRowBtn");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (logWorkoutBtn) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>logWorkoutBtn.addEventListener("click", executeWorkoutEntrySubmission);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// CORE WORKOUT LOG PACKAGING LOGIC</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function executeWorkoutEntrySubmission() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!state.workoutSelectedExercise) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Please select an active target movement sequence from the Exercise list panel first.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Collect structured field parameters</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s1W = parseFloat(document.getElementById("set1Weight").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s1R = parseInt(document.getElementById("set1Reps").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s2W = parseFloat(document.getElementById("set2Weight").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s2R = parseInt(document.getElementById("set2Reps").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s3W = parseFloat(document.getElementById("set3Weight").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const s3R = parseInt(document.getElementById("set3Reps").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const notes = document.getElementById("workoutNotes").value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!s1W || !s1R || !s2W || !s2R || !s3W || !s3R) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Please provide valid non-zero inputs for all three working training data arrays.");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate individualized session 1RM metrics using the Epley Equation [w * (1 + r / 30)]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const max1 = s1W * (1 + s1R / 30);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const max2 = s2W * (1 + s2R / 30);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const max3 = s3W * (1 + s3R / 30);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Peak efficiency tracking value validation anchor</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const bestSessionMax = Math.max(max1, max2, max3);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Determine strategy intensity category tag for database historical entries</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let statusText = `Wk ${state.workoutActiveWeek}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let themeContext = "Yellow";</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let blockMod = state.workoutActiveWeek % 4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 0) blockMod = 4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 2) themeContext = "Orange";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 3) themeContext = "Green";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (blockMod === 4) themeContext = "Red";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutFatigueMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>statusText = "Fatigue Session";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>themeContext = "Grey";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutTestWeekMode) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>statusText = "Test Week";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>themeContext = "Purple";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Package final operational JSON document item</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const workoutLogPacket = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: "wk_" + new Date().getTime() + "_" + Math.floor(Math.random() * 100),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>routine: state.workoutActiveRoutine,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>week: state.workoutActiveWeek,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>statusLabel: statusText,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>theme: themeContext,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>exercise: state.workoutSelectedExercise,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>set1: { kg: s1W, reps: s1R },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>set2: { kg: s2W, reps: s2R },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>set3: { kg: s3W, reps: s3R },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculated1RM: bestSessionMax,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>notes: notes,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>timestamp: new Date().toLocaleDateString()</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Commit packet to historical array indices unshifted</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.workoutRegistry.unshift(workoutLogPacket);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveState();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Refresh presentation layers immediately</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRoutineUI();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>calculateActiveWorkoutTension();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Clean down inputs form panel</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("workoutNotes").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("set1Reps").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("set2Reps").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("set3Reps").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// RENDERING SYSTEM FOR PROGRESSIVE OVERLOAD SESSION REGISTRY</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderWorkoutRegistryTable() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tableBody = document.getElementById("workoutRegistryTableBody");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!tableBody) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tableBody.innerHTML = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (state.workoutRegistry.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tableBody.innerHTML = `&lt;tr&gt;&lt;td colspan="6" class="py-8 text-center text-zinc-600 font-medium tracking-wide"&gt;No performance metric history present in LocalStorage registry.&lt;/td&gt;&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.workoutRegistry.forEach(row =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const tr = document.createElement("tr");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tr.id = `row_${row.id}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tr.className = "hover:bg-zinc-900/30 transition-colors duration-150";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Setup strategic visual badge variations based on structural theme parameters</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let badgeClass = "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.theme === "Orange") badgeClass = "bg-amber-500/10 text-amber-400 border border-amber-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.theme === "Green") badgeClass = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.theme === "Red") badgeClass = "bg-rose-500/10 text-rose-400 border border-rose-500/20";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.theme === "Grey") badgeClass = "bg-zinc-800 text-zinc-400 border border-zinc-700";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (row.theme === "Purple") badgeClass = "bg-purple-500/10 text-purple-400 border border-purple-500/20";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>tr.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-2 font-semibold text-zinc-400 whitespace-nowrap"&gt;Rot ${row.routine} • ${row.statusLabel}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 font-bold text-zinc-200"&gt;${row.exercise}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 font-medium text-zinc-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-500"&gt;S1:&lt;/span&gt; &lt;span class="text-zinc-200 font-bold"&gt;${row.set1.kg}k&lt;/span&gt;x${row.set1.reps} |<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-500"&gt;S2:&lt;/span&gt; &lt;span class="text-zinc-200 font-bold"&gt;${row.set2.kg}k&lt;/span&gt;x${row.set2.reps} |<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-zinc-500"&gt;S3:&lt;/span&gt; &lt;span class="text-zinc-200 font-bold"&gt;${row.set3.kg}k&lt;/span&gt;x${row.set3.reps}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide ${badgeClass}"&gt;Max: ${Math.round(row.calculated1RM)}kg&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 max-w-[200px] truncate text-zinc-400 font-medium"&gt;${row.notes || '&lt;span class="text-zinc-700"&gt;—&lt;/span&gt;'}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="py-3.5 px-3 text-right whitespace-nowrap space-x-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="toggleWorkoutRowInlineEdit('${row.id}')" id="editBtn_${row.id}" class="text-zinc-500 hover:text-purple-400 text-xs font-bold px-1 transition-colors cursor-pointer"&gt;Edit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="deleteWorkoutRegistryRow('${row.id}')" class="text-zinc-600 hover:text-rose-400 text-sm font-bold px-1 transition-colors cursor-pointer"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tableBody.appendChild(tr);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// INLINE TABLE CRUD MECHANICS FOR QUICK ADJUSTMENTS</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleWorkoutRowInlineEdit(rowId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const targetRow = state.workoutRegistry.find(item =&gt; item.id === rowId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const domRow = document.getElementById(`row_${rowId}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const editBtn = document.getElementById(`editBtn_${rowId}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!targetRow || !domRow || !editBtn) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (editBtn.textContent === "Edit") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>editBtn.textContent = "Save";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>editBtn.className = "text-emerald-400 hover:text-emerald-300 text-xs font-bold px-1 cursor-pointer";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Convert Performance cell into inline editable configuration templates</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dataCells = domRow.getElementsByTagName("td");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dataCells[2].innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-1 text-[11px]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;S1:&lt;/span&gt;&lt;input type="number" step="0.5" id="edit_s1w_${rowId}" value="${targetRow.set1.kg}" class="w-11 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;x&lt;input type="number" id="edit_s1r_${rowId}" value="${targetRow.set1.reps}" class="w-8 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;S2:&lt;/span&gt;&lt;input type="number" step="0.5" id="edit_s2w_${rowId}" value="${targetRow.set2.kg}" class="w-11 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;x&lt;input type="number" id="edit_s2r_${rowId}" value="${targetRow.set2.reps}" class="w-8 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;S3:&lt;/span&gt;&lt;input type="number" step="0.5" id="edit_s3w_${rowId}" value="${targetRow.set3.kg}" class="w-11 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;x&lt;input type="number" id="edit_s3r_${rowId}" value="${targetRow.set3.reps}" class="w-8 bg-zinc-950 border border-zinc-800 rounded p-0.5 text-center text-zinc-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Convert Notes block</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dataCells[4].innerHTML = `&lt;input type="text" id="edit_notes_${rowId}" value="${targetRow.notes || ''}" class="w-full bg-zinc-950 border border-zinc-800 rounded px-1.5 py-0.5 text-xs text-zinc-200"&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Collect and process inline inputs updates</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s1w = parseFloat(document.getElementById(`edit_s1w_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s1r = parseInt(document.getElementById(`edit_s1r_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s2w = parseFloat(document.getElementById(`edit_s2w_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s2r = parseInt(document.getElementById(`edit_s2r_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s3w = parseFloat(document.getElementById(`edit_s3w_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const s3r = parseInt(document.getElementById(`edit_s3r_${rowId}`).value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const notesVal = document.getElementById(`edit_notes_${rowId}`).value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!s1w || !s1r || !s2w || !s2r || !s3w || !s3r) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>alert("Inputs validation threshold breach. Provide active numeric values.");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Compute fresh underlying performance variables via Epley equations</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const max1 = s1w * (1 + s1r / 30);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const max2 = s2w * (1 + s2r / 30);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const max3 = s3w * (1 + s3r / 30);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const updatedMax = Math.max(max1, max2, max3);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Write inline parameters straight back into state registry array</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const idx = state.workoutRegistry.findIndex(item =&gt; item.id === rowId);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (idx !== -1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutRegistry[idx].set1 = { kg: s1w, reps: s1r };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutRegistry[idx].set2 = { kg: s2w, reps: s2r };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutRegistry[idx].set3 = { kg: s3w, reps: s3r };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutRegistry[idx].calculated1RM = updatedMax;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>state.workoutRegistry[idx].notes = notesVal;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveState();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Force full visual refresh loop to sync fallback calculations</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderWorkoutRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderWorkoutRoutineUI();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// COMPLETE PERFORMANCE ROW REMOVAL ENGINE WITH CONTINUITY SAFETIES</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function deleteWorkoutRegistryRow(rowId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!confirm("Are you sure you want to permanently delete this workout execution log row entry?")) return;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.workoutRegistry = state.workoutRegistry.filter(item =&gt; item.id !== rowId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveState();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Instantly re-verify downstream configurations so calculations hit historical fallbacks safely</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRegistryTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderWorkoutRoutineUI();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>calculateActiveWorkoutTension();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
